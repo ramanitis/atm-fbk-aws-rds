@@ -3,7 +3,7 @@ import { generateImage } from "../../utils/generateImage";
 import { redisCleint } from "../../utils/redisClient";
 import { uploadBase64Public } from "../../utils/awsS3Client";
 
-const controller1 = async (req: Request, res: Response) => {
+export const genImgFrmGpt = async (req: Request, res: Response) => {
     const prompt = req.query.prompt as string;
     if (!prompt) {
         res.status(400).send("Prompt is required");
@@ -24,7 +24,7 @@ const controller1 = async (req: Request, res: Response) => {
     }
 }
 
-const controller2 = async (req: Request, res: Response) => {
+export const imgGetFrmRds = async (req: Request, res: Response) => {
     try {
         const key = req.query?.key as string;
         if (!key) {
@@ -48,7 +48,7 @@ const controller2 = async (req: Request, res: Response) => {
     }
 }
 
-const controller3 = async (req: Request, res: Response) => {
+export const imgPutToAWS = async (req: Request, res: Response) => {
     try {
         const key = req.query?.key as string;
         if (!key) {
@@ -70,10 +70,4 @@ const controller3 = async (req: Request, res: Response) => {
         console.error("Error Uploading image:", error);
         res.status(500).send("Failed to upload image");
     }
-}
-
-export {
-    controller1 as imgGenController,
-    controller2 as imgGetFrmRds,
-    controller3 as imgPutToAWS
 }
