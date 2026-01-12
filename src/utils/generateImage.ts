@@ -33,7 +33,7 @@ export const generateImage = async (prompt: string, redisKey?:string): Promise<s
         if (!b64) throw new Error("OpenAI did not return b64_json image data");
         
         const ttlSeconds = 600;
-        const key = redisKey ?? 'b64:openai-image-content';
+        const key = redisKey ?? 'B64:JID:UID';
         await redisCleint.set(key, b64, { EX: ttlSeconds });
 
         return b64;

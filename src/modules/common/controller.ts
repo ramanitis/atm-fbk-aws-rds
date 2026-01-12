@@ -1,8 +1,7 @@
 import { Request, Response } from "express";
 import fs from 'fs';
 
-
-export const controller = async (req: Request, res: Response) => {
+export const defaultRouteController = async (req: Request, res: Response) => {
     try {
         const data = fs.readFileSync("readme.md", "utf8");
 
@@ -13,7 +12,3 @@ export const controller = async (req: Request, res: Response) => {
         return res.status(500).send("Something Went Wrong!");
     }
 };
-
-export {
-    controller as defaultRouteController
-}
